@@ -1,0 +1,21 @@
+#include <bits/stdc++.h> 
+void insertionSort(int n, vector<int> &arr){
+    for(int i = 1; i<n; i++){
+    // suppose  1 st element always sortedd thats why i started from 1 index  and camparing with 0th indexx.
+        int temp = arr[i];
+        //[ 2,3,4,6| 8 , 9 ] suppose compere 8 with left array, this loop for camparing with sorted aray .
+        int j = i -1;
+        for(; j>=0;j-- ){
+            if(arr[j]>temp){
+            // shifting 
+                arr[j+1]=arr[j];
+            }
+            else{
+                break;
+            }
+            
+        }
+        // final place where value will replace, always j is pointing just 1 index back from final place thats why i have written j+1 index .
+        arr[j+1]= temp;
+    }
+}
