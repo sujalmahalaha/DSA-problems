@@ -1,0 +1,23 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int i = m-1;// last index of num1
+        int j = n-1;// last index of num2
+        int k = m+n-1;// last index of resultant array taht is num1 (5+3-1= 7 because it will run 0 to 7 that is 8 size)
+        while(i>=0 && j>=0){
+            if(nums1[i] > nums2[j]){// comparing last index of both array  and updating num1 from last with the help of k that will start from 7 means last indx of resultant array
+                nums1[k] = nums1[i];
+                i--; k--;
+            }
+            else{
+                nums1[k] = nums2[j];
+                j--; k--;
+            }
+        }
+        while(j>=0){
+            nums1[k] = nums2[j];
+            j--; k--;
+        }
+    }
+
+};
