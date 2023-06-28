@@ -1,0 +1,13 @@
+#include <bits/stdc++.h> 
+void reverseArray(vector<int> &arr , int m)
+{
+  // using swap ex - [1,4,3,5,6,7] 
+  // 1st swap - [7,4,3,5,6,1]
+	int s = m+1;
+	int e = arr.size()-1;
+	while(s<=e){
+		swap(arr[s],arr[e]);
+		s++;
+		e--;
+	}
+}
