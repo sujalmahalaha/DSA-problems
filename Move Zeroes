@@ -1,0 +1,16 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i = 0 ; 
+// concept
+// if non zero = swap with first index and increment i 
+// if 0 dont do anything 
+        for(int j = 0; j< nums.size(); j ++){
+            if(nums[j]!= 0){
+                swap(nums [j],nums[i]);
+                i++;
+            }
+        }
+        
+    }
+};
