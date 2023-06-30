@@ -1,0 +1,48 @@
+#include <bits/stdc++.h> 
+bool checkPalindrome(string s)
+{
+    int st = 0, e = s.size() - 1;
+    for(int i = 0; i < s.size(); i++)
+    {  
+//replacing all upper case in lower case
+
+        if((s[i] >= 'A') && (s[i] <= 'Z'))
+        {
+            s[i] = s[i] - 'A' + 'a';
+            continue;
+        }
+    }
+    while(st<e)
+    { 
+        bool check_st = ((s[st] >= 'a') && (s[st] <= 'z')) || ((s[st] >= '0') && (s[st] <= '9'));
+        bool check_e = ((s[e] >= 'a') && (s[e] <= 'z')) || ((s[e] >= '0') && (s[e] <= '9'));
+//checking if the element is lower case or a number in string
+//else they are special characters
+        if((!check_st) && (!check_e))
+        {
+            st++;
+            e--;
+            continue;
+        }
+        else if(!check_st)
+        {
+            st++;
+            continue;
+        }
+        else if(!check_e)
+        {
+            e--;
+            continue;
+        }
+        if(check_e && check_st)
+        {
+            if(s[st] != s[e])
+            {
+                return false;
+            }
+        }
+        st++;
+        e--;
+    }
+    return true;
+}
