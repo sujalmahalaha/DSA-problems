@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int i = 0;
+        int ansindex= 0;
+        int n = chars.size();
+        while(i<n){
+            int j= i+1;
+            while(j<n&& chars[i]==chars[j]){
+                j++;
+                 
+            }
+            //yha se bhar kb niklunga
+            // ya to pura vector traverse kr liya ho ya nya character mil gya ho 
+            chars[ansindex++]= chars[i]; // storing character
+            int count = j-i;
+            // j is pointing the new character index and saving in ansindex 
+            // ex - 10 , ch= ['1','0']
+            if(count>1){
+               // converting counting into single digit 
+                string cnt = to_string(count);
+                for(char ch : cnt ){
+                    chars[ansindex++]=ch;
+                }
+            }
+            i = j ; 
+
+            // storing new character in i  we know that j is pointing in new character index
+
+        }
+        return ansindex;
+        
+    }
+};
