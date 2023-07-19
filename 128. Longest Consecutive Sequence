@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int longestConsecutive(vector < int > & nums) {
+  set < int > hashSet;
+  for (int num: nums) {
+    hashSet.insert(num);
+  }
+
+  int longestStreak = 0;
+
+  for (int num: nums) {
+    if (!hashSet.count(num - 1)) {
+      int currentNum = num;
+      int currentStreak = 1;
+
+      while (hashSet.count(currentNum + 1)) {
+        currentNum += 1;
+        currentStreak += 1;
+      }
+
+      longestStreak = max(longestStreak, currentStreak);
+    }
+  }
+
+  return longestStreak;
+}
+};
+
+///-------------------------------------------------------------------
+The function then proceeds to find the longest consecutive sequence:
+
+For each number num in the nums vector, it checks if num - 1 is not present in the hashSet. This is to identify the start of a potential consecutive sequence.
+If num - 1 is not found in the hashSet, it means num is the starting number of a consecutive sequence.
+It then sets two variables: currentNum to num and currentStreak to 1. currentStreak represents the current length of the consecutive sequence starting from num.
+It enters a while loop that continues as long as currentNum + 1 is found in the hashSet. This loop will keep extending the consecutive sequence by incrementing currentNum and currentStreak.
+Once the loop exits, it means the consecutive sequence ending with currentNum is complete.
+The longestStreak is updated to the maximum value between the current longestStreak and currentStreak.
