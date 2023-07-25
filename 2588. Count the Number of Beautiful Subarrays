@@ -1,0 +1,42 @@
+given k===0; 
+---------------------------------
+class Solution {
+public:
+    long long beautifulSubarrays(vector<int>& nums) {
+        int k =0;
+          int n = nums.size(); //size of the given array.
+    int xr = 0;
+    map<int, int> mpp; //declaring the map.
+    mpp[xr]++; //setting the value of 0.
+    int cnt = 0;
+
+    for (int i = 0; i < n; i++) {
+        // prefix XOR till index i:
+        xr = xr ^ nums[i];
+
+        //By formula: x = xr^k:
+        int x = xr ^ k;
+
+        // add the occurrence of xr^k
+        // to the count:
+        cnt += mpp[x];
+
+        // Insert the prefix xor till index i
+        // into the map:
+        mpp[xr]++;
+    }
+    return cnt;
+        
+    }
+};
+  //------------------------------------------------------------
+  The steps are as follows:
+
+First, we will declare a map to store the prefix XORs and their counts.
+Then, we will set the value of 0 as 1 on the map.
+Then we will run a loop(say i) from index 0 to n-1(n = size of the array).
+For each index i, we will do the following:
+We will XOR the current element i.e. arr[i] to the existing prefix XOR.
+Then we will calculate the prefix XOR i.e. xr^k, for which we need the occurrence.
+We will add the occurrence of the prefix XOR xr^k i.e. mpp[xr^k] to our answer.
+Then we will store the current prefix XOR, xr in the map increasing its occurrence by 1.
