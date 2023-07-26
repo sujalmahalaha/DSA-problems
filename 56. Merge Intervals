@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& arr) {
+        int n = arr.size(); // size of the array
+
+    //sort the given intervals:
+    sort(arr.begin(), arr.end());
+
+    vector<vector<int>> ans;
+
+    for (int i = 0; i < n; i++) {
+        // if the current interval does not
+        // lie in the last interval:
+        if (ans.empty() || arr[i][0] > ans.back()[1]) {
+            ans.push_back(arr[i]);
+        }
+        // if the current interval
+        // lies in the last interval:
+        else {
+            ans.back()[1] = max(ans.back()[1], arr[i][1]);
+        }
+    }
+    return ans;
+        
+    }
+};
+//------------------------------------------------------------------------------------------------
+Approach:
+The steps are as follows:
+
+First, we will group the closer intervals by sorting the given array of intervals(if it is not already sorted).
+After that, we will start traversing the array using a loop(say i) and insert the first element into our answer list(as the answer list is empty).
+Now, while traversing we will face two different cases:
+Case 1: If the current interval can be merged with the last inserted interval of the answer list:
+In this case, we will update the end of the last inserted interval with the maximum(current interval’s end, last inserted interval’s end) and continue moving afterward. 
+Case 2: If the current interval cannot be merged with the last inserted interval of the answer list:
+In this case, we will insert the current interval in the answer array as it is. And after this insertion, the last inserted interval of the answer list will obviously be updated to the current interval.
+Thus the answer list will be updated with the merged intervals and finally, we will return the answer list.
