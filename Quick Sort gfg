@@ -1,0 +1,48 @@
+class solution {
+public:
+    //Function to sort an array using quick sort algorithm.
+    void quickSort(int arr[], int low, int high)
+    {
+        qs(arr, low, high);
+        
+        // code here
+    }
+    
+    public:
+    int partition (int arr[], int low, int high)
+    {
+       // Your code here
+       int pivot= arr[low];
+       int i = low;
+       int j =high;
+       while(i<j){
+           while(arr[i]<=pivot&& i<=high-1){
+               i++;
+           }
+           while(arr[j]>pivot&& j >=low+1){
+               j--;
+           }
+           if(i<j){
+               swap (arr[i], arr[j]);
+           }
+       }
+       swap(arr[low], arr[j]);
+       return j ;
+    }
+    public :
+    void qs(int arr[], int low, int high ){
+        if(low<high){
+        int partitionIndex= partition (arr, low, high);
+        qs(arr, low, partitionIndex-1);
+        qs(arr, partitionIndex+1, high);
+        }
+    }
+};
+-----------------------------------------------------------------------------------
+The algorithm steps are the following for the quickSort() function:
+
+Initially, the low points to the first index and the high points to the last index(as the range is n i.e. the size of the array). 
+After that, we will get the index(where the pivot should be placed after sorting) while shifting the smaller elements on the left and the larger ones on the right using a partition() function discussed later.
+Now, this index can be called the partition index as it creates a partition between the left and the right unsorted subarrays.
+After placing the pivot in the partition index(within the partition() function specified), we need to call the function quickSort() for the left and the right subarray recursively. So, the range of the left subarray will be [low to (partition index – 1)] and the range of the right subarray will be [(partition index + 1) to high]. 
+This is how the recursion will continue until the range becomes 1.
